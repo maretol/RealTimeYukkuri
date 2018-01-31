@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeYukkuri", "RealTimeYukkuri\RealTimeYukkuri.csproj", "{59E09783-E1C6-4CF4-A60F-2028B7AB624B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59E09783-E1C6-4CF4-A60F-2028B7AB624B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E09783-E1C6-4CF4-A60F-2028B7AB624B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E09783-E1C6-4CF4-A60F-2028B7AB624B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E09783-E1C6-4CF4-A60F-2028B7AB624B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9454169B-D769-4D2F-B17C-A2207E1BA4C5}
+	EndGlobalSection
+EndGlobal
