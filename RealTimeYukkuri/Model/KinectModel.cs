@@ -53,7 +53,7 @@ namespace RealTimeYukkuri.Model
         /// <summary>
         /// Kinectから取得した骨格情報
         /// </summary>
-        private Body[] Bodys;
+        private Body[] Bodies;
 
         /// <summary>
         /// Kinectから取得した色情報用の一時的なバッファ
@@ -152,6 +152,8 @@ namespace RealTimeYukkuri.Model
 
         #endregion
 
+        #region メソッド
+
         /// <summary>
         /// 開始メソッド
         /// </summary>
@@ -227,13 +229,63 @@ namespace RealTimeYukkuri.Model
         /// <param name="e"></param>
         private void OnFaceFrameArrived(object sender, FaceFrameArrivedEventArgs e)
         {
+            using (var faceFrame = e.FrameReference.AcquireFrame())
+            {
+                var result = faceFrame?.FaceFrameResult;
+                if(result == null)
+                {
+                    return;
+                }
 
+                Happy = result.FaceProperties[FaceProperty.Happy].ToString();
+                LeftEyeClosed = result.FaceProperties[FaceProperty.LeftEyeClosed].ToString();
+                RightEyeClosed = result.FaceProperties[FaceProperty.RightEyeClosed].ToString();
+                MouthOpen = result.FaceProperties[FaceProperty.MouthOpen].ToString();
+                MouthMoved = result.FaceProperties[FaceProperty.MouthMoved].ToString();
+                LookingAway = result.FaceProperties[FaceProperty.LookingAway].ToString();
+                Glasses = result.FaceProperties[FaceProperty.WearingGlasses].ToString();
+                FaceRotation = result.FaceRotationQuaternion;
+                
+            }
         }
 
+        /// <summary>
+        /// 各種データの受け取りと処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnMultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
-            throw new NotImplementedException();
+            var frame = e.FrameReference.AcquireFrame();
+            if (frame == null)
+            {
+                return;
+            }
+
+            using (var bodyFrame = frame.BodyFrameReference.AcquireFrame())
+            {
+                if (bodyFrame == null)
+                {
+                    return;
+                }
+                Bodies = new Body[bodyFrame.BodyCount];
+                bodyFrame.GetAndRefreshBodyData(Bodies);
+
+                if (!FaceSource.IsTrackingIdValid)
+                {
+                    var target = (from body in Bodies where body.IsTracked select body).FirstOrDefault();
+                    FaceSource.TrackingId = target?.TrackingId ?? FaceSource.TrackingId;
+                }
+            }
+
+            /// 画像の情報は以下で処理する。今は使ってないが参考に
+            //using (var colorFrame = frame.ColorFrameReference.AcquireFrame())
+            //{
+            //
+            //}
         }
+
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
