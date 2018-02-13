@@ -14,12 +14,10 @@
     <Grid Margin="10">
         <TabControl x:Name="MainTabLayout" TabStripPlacement="Left">
             
-            <TabItem Header="情報">
-                <materialDesign:Card Padding="32" Margin="16">
-                    <TextBlock Text="hogehogehoge"></TextBlock>
-                </materialDesign:Card>
+            <TabItem Header="情報モニタ">
+                <local:InfomationTabItem x:Name="Infomation"></local:InfomationTabItem>
             </TabItem>
-            <TabItem Header="テスト表示">
+            <TabItem Header="テスト">
                 <local:TestTabItem x:Name="hoge"></local:TestTabItem>
             </TabItem>
         </TabControl>

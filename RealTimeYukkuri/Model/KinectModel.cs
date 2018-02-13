@@ -15,6 +15,26 @@ namespace RealTimeYukkuri.Model
 {
     class KinectModel : INotifyPropertyChanged
     {
+        private static KinectModel kinectModelInstance;
+        public static KinectModel GetKinectModelInstance {
+            get
+            {
+                if (kinectModelInstance != null)
+                {
+                    return kinectModelInstance;
+                }
+                kinectModelInstance = new KinectModel();
+                return kinectModelInstance;
+            }
+        }
+
+        /// <summary>
+        /// コンストラクタ。シングルトンにしてるからそっちからのみ呼び出し
+        /// </summary>
+        private KinectModel()
+        {
+        }
+
         #region "メンバ変数"
 
         /// <summary>
@@ -151,6 +171,7 @@ namespace RealTimeYukkuri.Model
         #endregion
 
         #endregion
+
 
         #region メソッド
 
