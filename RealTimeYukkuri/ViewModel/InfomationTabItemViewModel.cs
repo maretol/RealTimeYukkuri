@@ -13,7 +13,7 @@ namespace RealTimeYukkuri.ViewModel
         {
         }
         
-        public string MainLogo { get { return "リアルタイムゆっくり（べーたばん）"; } }
+        public string MainLogo { get { return "リアルタイムゆっくり（仮）"; } }
 
         public string Version { get { return "Version : 現在バージョン未管理"; } }
     }
