@@ -89,6 +89,16 @@ namespace RealTimeYukkuri.Model
 
         #region "プロパティ"
         /// <summary>
+        /// 動いてるかどうか
+        /// </summary>
+        private bool isAwaken;
+        public bool IsAwaken
+        {
+            get { return isAwaken && Kinect != null; }
+            private set { SetProperty(ref isAwaken, value); }
+        }
+
+        /// <summary>
         /// Kinectから取得した表示用の色情報。最終的には使わないかも
         /// </summary>
         private WriteableBitmap _ColorBitmap;
@@ -175,24 +185,38 @@ namespace RealTimeYukkuri.Model
 
         #region メソッド
 
+        public void ExecCommand()
+        {
+            if(Kinect == null)
+            {
+                Start();
+            }
+            else
+            {
+                Stop();
+            }
+        }
+
         /// <summary>
         /// 開始メソッド
         /// </summary>
-        public void Start()
+        private void Start()
         {
             Init();
+            IsAwaken = true;
         }
 
         /// <summary>
         /// 終了メソッド
         /// </summary>
-        public void Stop()
+        private void Stop()
         {
             Reader?.Dispose();
             FaceSource?.Dispose();
             FaceReader?.Dispose();
             Kinect.Close();
             Kinect = null;
+            IsAwaken = false;
         }
 
         /// <summary>

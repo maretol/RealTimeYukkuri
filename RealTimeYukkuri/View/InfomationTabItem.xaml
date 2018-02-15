@@ -15,6 +15,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -23,6 +25,9 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding MainLogo}"
                        FontSize="32"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Version}"/>
+            <Button Grid.Row="3" Grid.Column="0" Content="{Binding ButtonText}"
+                    Command="{Binding KinectButton}" HorizontalAlignment="Left" Margin="0,5,5,5"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding StatusText}" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>
